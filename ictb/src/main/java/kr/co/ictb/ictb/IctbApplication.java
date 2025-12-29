@@ -1,0 +1,29 @@
+package kr.co.ictb.ictb;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@SpringBootApplication					//여기에 @EnableAutoConfiguration랑 @Configuration, @ComponentScan 포함(이 scan덕분에 이 패키지 이하에 존재하는 @Component, @Service, @Repository, @Controller 전부 찾아서 등록)
+public class IctbApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(IctbApplication.class, args);
+	}
+	
+	@Bean
+	public WebMvcConfigurer crosConfigurer() { //WebMvcConfigurer객체는 스프링 MVC 설정용 인터페이스 객체
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {//커스텀하기위해 override
+				registry.addMapping("/**")				//모든 URL 경로에 대해 CORS 정책 적용
+				.allowedOrigins("http://192.168.0.3:3001","http://192.168.0.3:3000", "http://localhost:3001","http://localhost:3000")	//허용할 클라이언트 도메인/포트 지정 (리액트 개발 서버 등)
+				.allowedHeaders("*")					//모든 요청 헤더 허용
+				.allowCredentials(true)					//쿠키, 인증 정보를 포함한 요청 허용 (withCredentials: true와 연동)
+				.allowedMethods("*").maxAge(3600);		//모든 HTTP 메서드(GET, POST, PUT 등) 허용 //브라우저가 preflight(CORS OPTIONS 요청) 결과를 1시간(3600초) 동안 캐싱
+			}
+		};
+	}
+}

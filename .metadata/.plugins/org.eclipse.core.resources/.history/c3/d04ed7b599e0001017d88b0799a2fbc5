@@ -1,0 +1,13 @@
+package kr.co.ictb.ictb.vo;
+
+@Getter
+@Setter
+@Alias("memvo")
+public class MemberVO {
+    private int num;
+    private String name;
+    private String id;
+    private String password;
+    private String email;
+    
+}

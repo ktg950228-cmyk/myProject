@@ -1,0 +1,16 @@
+package kr.co.ictb.ictb.vo;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Alias("memvo")
+public class MemberVO {
+    private int num;
+    private String name;
+    private String id;
+    private String password;
+    private String email;
+    
+}

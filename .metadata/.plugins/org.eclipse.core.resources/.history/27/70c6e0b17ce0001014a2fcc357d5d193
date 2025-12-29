@@ -1,0 +1,10 @@
+spring.application.name=ictb
+spring.main.web-application-type=servlet
+server.port=80
+server.servlet.context-path=/myictstudy
+
+spring.sql.init.platform=oracle
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.username=ictb
+spring.datasource.password=ictb

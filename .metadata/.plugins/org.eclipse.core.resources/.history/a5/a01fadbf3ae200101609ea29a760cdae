@@ -1,0 +1,5 @@
+package kr.co.ictb.ictb.service;
+
+public class BoardService {
+	
+}

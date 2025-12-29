@@ -1,0 +1,5 @@
+package kr.co.ictb.ictb.vo;
+
+public class BoardCommVO {
+
+}

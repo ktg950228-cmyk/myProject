@@ -1,0 +1,8 @@
+package kr.co.ictb.ictb.dao;
+
+import kr.co.ictb.ictb.vo.BoardCommVO;
+
+public interface BoardCommDao {
+	void add(BoardCommVO vo);
+	List
+}

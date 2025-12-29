@@ -1,0 +1,17 @@
+package kr.co.ictb.ictb.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.ictb.ictb.dao.BoardCommDao;
+import kr.co.ictb.ictb.vo.BoardVO;
+
+@Service
+public class BoardCommService {
+	@Autowired
+	private BoardCommDao boardCommDao;
+	
+	public void add(BoardVO vo) {
+		boardCommDao.add(vo);
+	}
+}

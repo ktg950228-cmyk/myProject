@@ -1,0 +1,5 @@
+package kr.co.ictb.ictb.dao;
+
+public interface BoardCommDao {
+
+}

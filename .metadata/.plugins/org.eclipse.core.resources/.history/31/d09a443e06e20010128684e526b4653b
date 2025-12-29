@@ -1,0 +1,14 @@
+package kr.co.ictb.ictb.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import kr.co.ictb.ictb.vo.BoardVO;
+
+public interface BoardDao {
+	public List<BoardVO> list(Map<String, String> map);
+	
+	public void add(BoardVO vo);
+	public void delete(int num);
+//add list delete detail total
+}

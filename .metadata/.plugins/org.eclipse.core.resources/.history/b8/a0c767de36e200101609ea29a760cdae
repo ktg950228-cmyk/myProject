@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="kr.co.ictb.ictb.dao.BoardDao">
+ 	<select id="list" resultType="bvo" parameterType="map">
+ 		SELECT num, title, writer, udate FROM (SELECT num, title, writer, udate, ROW_NUMBER() OVER (ORDER BY num desc) AS rn FROM BOARD WHERE category=#{category}
+ 		<if test="searchType != null and searchValue != null">
+ 			AND
+ 			<choose>
+ 				<when test="searchType == 1">
+ 					(title like '%'|| #{searchValue} ||'%')
+ 				</when>
+ 				<when test="searchType == 2">
+ 					(content like '%'|| #{searchValue} ||'%')
+ 				</when>
+ 				<when test="searchType == 3">
+ 					(title like '%'|| #{searchValue} ||'%' or content like '%'|| #{searchValue} ||'%')
+ 				</when>
+ 				<when test="searchType == 4">
+ 					(writer like '%'|| #{searchValue} ||'%')
+ 				</when>
+ 			</choose>
+ 		</if>
+ 		) WHERE rn BETWEEN #{begin} AND #{end}
+ 	</select>
+ 	
+ 	<select id="detail" resultType="bvo" parameterType="int">
+ 		SELECT title, writer, udate, image, CONTENT FROM BOARD WHERE num=#{num}
+ 	</select>
+ 	
+ 	<insert id="add" parameterType="bvo">
+ 		INSERT INTO BOARD VALUES(board_num_pk.NEXTVAL, #{category}, #{title}, #{writer}, sysdate, #{image}, #{content})
+ 	</insert>
+ 	
+ 	<delete id="delete" parameterType="int">
+ 		DELETE BOARD WHERE num=#{num}
+ 	</delete>
+ 	
+ 	<select id="total" parameterType="map">
+ 		SELECT COUNT(*) FROM BOARD WHERE category=#{category}
+ 		<if test="searchType != null and searchValue != null">
+ 			 AND
+ 		</if>
+ 	</select>
+ </mapper>

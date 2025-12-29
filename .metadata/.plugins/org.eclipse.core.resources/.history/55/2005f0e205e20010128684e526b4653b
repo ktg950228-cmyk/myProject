@@ -1,0 +1,8 @@
+package kr.co.ictb.ictb.dao;
+
+import kr.co.ictb.ictb.vo.BoardVO;
+
+public interface BoardDao {
+	public void add(BoardVO);
+add list delete detail total
+}
